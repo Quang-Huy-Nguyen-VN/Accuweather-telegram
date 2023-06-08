@@ -1,0 +1,64 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<style>
+    .home-container{
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+    }
+</style>
+
+<div class="home-container">
+    <div>
+        <div id="openweathermap-widget-21"></div>
+        <script src='//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/d3.min.js'></script><script>window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 21,cityid: '1570449',appid: '6599a7ee10534ac937d4a6ce1e8f73a3',units: 'metric',containerid: 'openweathermap-widget-21',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();</script>
+
+        <br>
+        <h3>Browse Topics</h3>
+        <hr>
+
+        <div>
+            <a href="{% url 'home' %}">ALL</a>
+        </div>
+
+        {% for topic in topics %}
+            <div>
+                <a href="{% url 'home' %}?q={{topic.name}}">{{topic.name}}</a>
+            </div>
+        {% endfor %}
+
+    
+                
+    </div>
+        <div>
+            <a href="{%url 'create-project' %}">Create project</a>
+            <br>
+            <br>
+            {% for project in projects %}
+            <div>
+                {% if request.user == project.host %}
+                <a href="{% url 'update-project' project.id %}"> Edit </a> &nbsp;&nbsp;&nbsp;
+                <a href="{% url 'delete-project' project.id %}"> Delete </a> 
+                {% endif %}
+                
+                <span> @{{project.host.username}} </span>
+                <h4>{{project.id}} -- <a href="{% url 'project' project.id %}">{{project.name}}</a></h4>
+                <small>#{{project.topic.name}} &nbsp;&nbsp;&nbsp; <span> @{{project.host.username}} </span></small>
+                <hr>
+
+            </div>
+
+            {% endfor %}
+        </div>
+
+        <div>
+            <a href="{%url 'search-weather' %}">Search weather</a> <br>
+            <a href="{%url 'weather' %}">Weather</a> <br>
+        </div>
+
+
+
+</div>
+
+{% endblock content %}

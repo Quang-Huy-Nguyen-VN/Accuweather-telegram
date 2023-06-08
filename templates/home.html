@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'main.html' %}
+
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <h1> Home Template </h1>
+    <title>Title</title>
+</head>
+
+
+<body>
+
+<div>
+    <div>
+        {% for project in projects %}
+            <div>
+                <span> {{project.host.username}} </span>
+                <h5>{{project.id}} -- {{project.name}} </h5>
+                <small> #{{project.topic.name}} </small>
+            </div>
+
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+</body>
+
+{% endblock %}
+
+</html>

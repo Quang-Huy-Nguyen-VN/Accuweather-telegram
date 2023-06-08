@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+{% extends 'main.html' %}
+
+{% block content %}
+
+<head>
+  <meta charset="utf-8">
+  <title>Weather</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <h1 class="col-md-3 text-center">Weather</h1>
+  <br />
+  <div class="row">
+    {% for data in data %}
+    
+    {% if data.name and data.country_code and data.timezone and data.coordinate and data.temp and data.feels_like and data.temp_min and data.temp_max and data.pressure and data.humidity and data.weather_description%}
+    <div class="col-md-6 col-md-offset-3">
+      <h4> {{data.name}} </h4>
+        <h5> Quốc gia : {{data.country_code}} </h5>
+        <h5> Múi giờ : {{data.timezone}} </h5>
+        <h5> Tọa độ : {{data.coordinate}} </h5>
+        <h5> Nhiệt độ hiện tại : {{data.temp}} </h5>
+        <h5> Nhiệt độ cảm thấy : {{data.feels_like}} </h5>
+        <h5> Nhiệt độ thấp nhất : {{data.temp_min}} </h5>
+        <h5> Nhiệt độ cao nhất : {{data.temp_max}} </h5>
+        <h5> Áp suất : {{data.pressure}} </h5>
+        <h5> Độ ẩm : {{data.humidity}} </h5>
+        <h5> Thời tiết : {{data.weather_description}} </h5>
+        <img src = 'http://api.openweathermap.org/img/w/{{data.icon}}'>
+        
+    </div>
+    {% endif %}
+
+    {% endfor %}
+  </div>
+</body>
+
+{% endblock content %}
+
+</html>

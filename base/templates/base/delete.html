@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% extends 'main.html' %}
+
+
+{% block content %}
+
+
+<head>
+    <meta charset="UTF-8">
+
+    <div>
+      <form method="POST">
+        {% csrf_token %}
+        <p> Bạn chắc chắn muốn xóa dự án "{{obj}}" chứ ? </p>
+        <a href = "{{request.META.HTTP_REFERER}}"> Quay lại </a>
+        <input type="submit" value="Confirm" />
+      </form>
+    </div>
+
+</head>
+
+<body>
+
+</body>
+
+{% endblock %}
+</html>
